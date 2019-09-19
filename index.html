@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content_light="width=device-width,user-scalable=no">
+    <title>Do Not Disturb</title>
+    <link rel="stylesheet" href="/assets/styles/app.css">
+    <link rel="stylesheet" href="/assets/styles/index.css">
+    <link rel="manifest" href="/manifest.webapp">
+    <link rel="localization" href="/assets/locales/{locale}/index.properties">
+    <script src="/assets/scripts/l10n.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <header class="header_bar">
+      <h1 class="header_title" id="h_title">header_title</h1>
+    </header>
+    <section class="content transition_blur_out">
+      <img src="/assets/icons/dnd56x56.png" class="dnd_logo_center">
+      <p class="dnd_description" data-l10n-id="dnd_description">dnd_description</p>
+    </section>
+    <section class="content transition_settings_hide" id="settings_container" style="right: 100%;">
+      <div class="settings_separator" data-l10n-id="settings_dnd_separator_toggles">settings_dnd_separator_toggles</div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="settings_dnd_mode">settings_dnd_mode</h2>
+        <select class="settings_entry_select" id="select_0">
+          <option value="total" data-l10n-id="settings_dnd_mode_total">settings_dnd_mode_total</option>
+          <option value="alarms" data-l10n-id="settings_dnd_mode_alarms">settings_dnd_mode_alarms</option>
+        </select>
+      </div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="settings_dnd_auto">settings_dnd_auto</h2>
+        <select class="settings_entry_select" id="select_1">
+          <option value="true" data-l10n-id="settings_dnd_auto_on">settings_dnd_auto_on</option>
+          <option value="false" data-l10n-id="settings_dnd_auto_off">settings_dnd_auto_off</option>
+        </select>
+      </div>
+      <div class="settings_separator" data-l10n-id="settings_dnd_separator_schedule">settings_dnd_separator_schedule</div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="settings_dnd_time_days">settings_dnd_time_days</h2>
+        <select class="settings_entry_select" id="select_2" multiple>
+          <option value="monday" data-l10n-id="settings_dnd_time_days_monday">settings_dnd_time_days_monday</option>
+          <option value="tuesday" data-l10n-id="settings_dnd_time_days_tuesday">settings_dnd_time_days_tuesday</option>
+          <option value="wednesday" data-l10n-id="settings_dnd_time_days_wednesday">settings_dnd_time_days_wednesday</option>
+          <option value="thursday" data-l10n-id="settings_dnd_time_days_thursday">settings_dnd_time_days_thursday</option>
+          <option value="friday" data-l10n-id="settings_dnd_time_days_friday">settings_dnd_time_days_friday</option>
+          <option value="saturday" data-l10n-id="settings_dnd_time_days_saturday">settings_dnd_time_days_saturday</option>
+          <option value="sunday" data-l10n-id="settings_dnd_time_days_sunday">settings_dnd_time_days_sunday</option>
+        </select>
+      </div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="settings_dnd_time_on">settings_dnd_time_on</h2>
+        <input class="settings_entry_select" type="time" value="00:00" id="select_3">
+      </div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="settings_dnd_time_off">settings_dnd_time_off</h2>
+        <input class="settings_entry_select" type="time" value="00:00" id="select_4">
+      </div>
+    </section>
+    <!-- Namisdud3 -->
+    <footer class="softkeys_bar">
+      <label class="softkey_left" id="sk_left">sk_left</label>
+      <label class="softkey_center" id="sk_center">sk_center</label>
+      <label class="softkey_right" id="sk_right">sk_right</label>
+    </footer>
+    <script src="/assets/scripts/naviboard.js" defer></script>
+    <script src="/assets/scripts/index.js" defer></script>
+  </body>
+</html>

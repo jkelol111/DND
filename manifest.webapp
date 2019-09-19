@@ -1,0 +1,66 @@
+{
+  "version": "0.1.0",
+  "name": "Do Not Disturb",
+  "description": "'Do not disturb' for KaiOS.",
+  "launch_path": "/index.html",
+  "orientation": "default",
+  "theme_color": "#cc0000",
+  "origin": "app://dnd.jkelol111.me",
+  "icons": {
+    "16": "/assets/icons/dnd16x16.png",
+    "56": "/assets/icons/dnd56x56.png",
+    "112" : "/assets/icons/dnd112x112.png"
+  },
+  "chrome": {
+    "statusbar": "overlap"
+  },
+  "developer": {
+    "name": "Nguyen Thanh Nam (jkelol111)",
+    "url": "http://github.com/jkelol111"
+  },
+  "type": "certified",
+  "permissions": {
+    "audio-channel-publicnotification": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "audio-channel-ringer": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "audio-channel-notification": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "audio-channel-alarm": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "audio-channel-content": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "audio-channel-normal": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "attention": {
+      "description": "Required to start/stop 'Do not disturb' mode."
+    },
+    "alarm": {
+      "description": "Required to automatically start/stop 'Do not disturb' mode."
+    }
+  },
+  "messages": [{ "alarm": "/attention.html"}],
+  "activities": {
+    "volumes": {
+      "href": "/volumes.html",
+      "disposition": "inline",
+      "returnValue": true
+    }
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "locales": {
+    "vi": {
+      "name" : "Không Đổ Chuông",
+      "description" : "'Không đổ chuông' cho KaiOS."
+    }
+  }
+}
