@@ -1,5 +1,6 @@
-"use strict"
+'use strict'
 
+try{
 function getL10nString(l10nId) {
   document.getElementById("l10nAid").setAttribute("data-l10n-id", l10nId);
   return document.getElementById("l10nAid").textContent;
@@ -35,9 +36,9 @@ class DndScheduleManager {
       alarms.onerror = (err) => {
         throw err;
       }
-      localStorage.removeItem("dnd.schedule.beginDaily");
+      localStorage.removeItem("dnd.schedule.daily.begin");
       localStorage.removeItem("dnd.schedule.days");
-      localStorage.removeItem("dnd.schedule.endDaily");
+      localStorage.removeItem("dnd.schedule.daily.end");
       this.changesSavedCb();
     } catch(err) {
       this.changesUnsavedCb(err);
@@ -48,8 +49,8 @@ class DndScheduleManager {
     try {
       var emptyStringArray = JSON.stringify([]);
       if(JSON.stringify(beginDndDaily) != emptyStringArray) {
-        localStorage.setItem("dnd.schedule.beginDaily", JSON.stringify({hour: beginDndDaily[0],
-                                                                        minute: beginDndDaily[1]}));
+        localStorage.setItem("dnd.schedule.daily.begin", JSON.stringify({hour: beginDndDaily[0],
+                                                                         minute: beginDndDaily[1]}));
       } else {
         throw new TypeError("beginDndDaily should not be an empty array.");
       }
@@ -60,8 +61,8 @@ class DndScheduleManager {
         throw new TypeError("daysToDnd should not be an empty array.");
       }
       if(JSON.stringify(endDndDaily) != emptyStringArray) {
-        localStorage.setItem("dnd.schedule.endDaily", JSON.stringify({hour: endDndDaily[0],
-                                                                      minute: endDndDaily[1]}));
+        localStorage.setItem("dnd.schedule.daily.end", JSON.stringify({hour: endDndDaily[0],
+                                                                       minute: endDndDaily[1]}));
       } else {
         throw new TypeError("endDndDaily should not be an empty array.");
       }
@@ -91,12 +92,12 @@ function getDaysSelected() {
           string: selectedString};
 }
 
-document.getElementById("select_0").addEventListener("change", (e) => {
+document.getElementById("select_0").onchange = (e) => {
   localStorage.setItem("dnd.mode", e.target.value);
   scheduler.changesSavedCb();
-})
+}
 
-document.getElementById("select_1").addEventListener("change", (e) => {
+document.getElementById("select_1").onchange = (e) => {
   switch(e.target.value) {
     case "true":
       try {
@@ -118,9 +119,9 @@ document.getElementById("select_1").addEventListener("change", (e) => {
       console.log(e.target.value);
       break;
   }
-});
+}
 
-document.getElementById("select_2").addEventListener("change", () => {
+document.getElementById("select_2").onchange = (e) => {
   var selectedObject = getDaysSelected();
   var selected = JSON.stringify(selectedObject["values"]);
   if(selected === JSON.stringify(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])) {
@@ -136,23 +137,22 @@ document.getElementById("select_2").addEventListener("change", () => {
   }
   localStorage.setItem("dnd.schedule.days", selected);
   scheduler.changesSavedCb();
-});
+}
 
-document.getElementById("select_3").onchange = () => {
-  var timeOn = document.getElementById("select_3").split(":");
-  localStorage.setItem("dnd.schedule.beginDaily", timeOn[0]+":"+timeOn[1]);
-  console.log("changed");
+document.getElementById("select_3").onchange = (e) => {
+  var timeOn = document.getElementById("select_3").value.split(":");
+  localStorage.setItem("dnd.schedule.daily.begin", JSON.stringify({hour: timeOn[0],
+                                                                   minute: timeOn[1]}));
   scheduler.changesSavedCb();
-};
+}
 
-document.getElementById("select_4").onchange = () => {
-  var timeOff = document.getElementById("select_4").split(":");
-  localStorage.setItem("dnd.schedule.endDaily", timeOff[0]+":"+timeOff[1]);
-  console.log("changed2")
+document.getElementById("select_4").onchange = (e) => {
+  var timeOff = document.getElementById("select_4").value.split(":");
+  localStorage.setItem("dnd.schedule.daily.end", JSON.stringify({hour: timeOff[0],
+                                                                 minute: timeOff[1]}));
   scheduler.changesSavedCb();
-};
+}
 
-try {
 if(localStorage.getItem("dnd.mode") != null) {
   document.getElementById("select_0").value = localStorage.getItem("dnd.mode");
 }
@@ -163,17 +163,17 @@ if(storedDays != null) {
   localStorage.setItem("dnd.schedule.enabled", "false");
 }
 document.getElementById("select_1").value = localStorage.getItem("dnd.schedule.enabled");
-var storedBeginTime = localStorage.getItem("dnd.schedule.beginDaily");
+var storedBeginTime = localStorage.getItem("dnd.schedule.daily.begin");
 if(storedBeginTime != null) {
+  console.log(storedBeginTime);
   storedBeginTime = JSON.parse(storedBeginTime);
   document.getElementById("select_3").value = storedBeginTime["hour"]+":"+storedBeginTime["minute"];
 }
-var storedEndTime = localStorage.getItem("dnd.schedule.endDaily");
+var storedEndTime = localStorage.getItem("dnd.schedule.daily.end");
 if(storedEndTime != null) {
   storedEndTime = JSON.parse(storedEndTime);
   document.getElementById("select_4").value = storedEndTime["hour"]+":"+storedEndTime["minute"];
 }
-} catch(err) {console.error(err)}
 
 class AppNavigation {
   updateSoftkeyLabel(keysToUpdate) {
@@ -287,4 +287,4 @@ window.addEventListener('DOMContentLoaded', () => {
         break;
     }
   });
-});
+});}catch(err) {console.error(err)}
