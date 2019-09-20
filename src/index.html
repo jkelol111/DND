@@ -6,11 +6,13 @@
     <title>Do Not Disturb</title>
     <link rel="stylesheet" href="/assets/styles/app.css">
     <link rel="stylesheet" href="/assets/styles/index.css">
+    <link rel="stylesheet" href="/assets/styles/native-toast.css">
     <link rel="manifest" href="/manifest.webapp">
     <link rel="localization" href="/assets/locales/{locale}/index.properties">
-    <script src="/assets/scripts/l10n.js" charset="utf-8"></script>
+    <script src="/assets/scripts/lib/l10n.js" charset="utf-8"></script>
   </head>
   <body>
+    <div style="height: 0; width: 0; position: absolute; left: -998em;" id="l10nAid"></div>
     <header class="header_bar">
       <h1 class="header_title" id="h_title">header_title</h1>
     </header>
@@ -37,15 +39,16 @@
       <div class="settings_separator" data-l10n-id="settings_dnd_separator_schedule">settings_dnd_separator_schedule</div>
       <div class="settings_entry navigable">
         <h2 class="settings_entry_label" data-l10n-id="settings_dnd_time_days">settings_dnd_time_days</h2>
-        <select class="settings_entry_select" id="select_2" multiple>
-          <option value="monday" data-l10n-id="settings_dnd_time_days_monday">settings_dnd_time_days_monday</option>
-          <option value="tuesday" data-l10n-id="settings_dnd_time_days_tuesday">settings_dnd_time_days_tuesday</option>
-          <option value="wednesday" data-l10n-id="settings_dnd_time_days_wednesday">settings_dnd_time_days_wednesday</option>
-          <option value="thursday" data-l10n-id="settings_dnd_time_days_thursday">settings_dnd_time_days_thursday</option>
-          <option value="friday" data-l10n-id="settings_dnd_time_days_friday">settings_dnd_time_days_friday</option>
-          <option value="saturday" data-l10n-id="settings_dnd_time_days_saturday">settings_dnd_time_days_saturday</option>
-          <option value="sunday" data-l10n-id="settings_dnd_time_days_sunday">settings_dnd_time_days_sunday</option>
+        <select class="settings_entry_select" id="select_2" multiple style="height: 0; width: 0; position: absolute; left: -999em;">
+          <option value="Monday" data-l10n-id="settings_dnd_time_days_monday">settings_dnd_time_days_monday</option>
+          <option value="Tuesday" data-l10n-id="settings_dnd_time_days_tuesday">settings_dnd_time_days_tuesday</option>
+          <option value="Wednesday" data-l10n-id="settings_dnd_time_days_wednesday">settings_dnd_time_days_wednesday</option>
+          <option value="Thursday" data-l10n-id="settings_dnd_time_days_thursday">settings_dnd_time_days_thursday</option>
+          <option value="Friday" data-l10n-id="settings_dnd_time_days_friday">settings_dnd_time_days_friday</option>
+          <option value="Saturday" data-l10n-id="settings_dnd_time_days_saturday">settings_dnd_time_days_saturday</option>
+          <option value="Sunday" data-l10n-id="settings_dnd_time_days_sunday">settings_dnd_time_days_sunday</option>
         </select>
+        <label class="settings_entry_select" id="select_2_label" data-l10n-id="settings_dnd_time_days_none">settings_dnd_time_days_none</label>
       </div>
       <div class="settings_entry navigable">
         <h2 class="settings_entry_label" data-l10n-id="settings_dnd_time_on">settings_dnd_time_on</h2>
@@ -62,7 +65,8 @@
       <label class="softkey_center" id="sk_center">sk_center</label>
       <label class="softkey_right" id="sk_right">sk_right</label>
     </footer>
-    <script src="/assets/scripts/naviboard.js" defer></script>
+    <script src="/assets/scripts/lib/native-toast.js" defer></script>
+    <script src="/assets/scripts/lib/naviboard.js" defer></script>
     <script src="/assets/scripts/index.js" defer></script>
   </body>
 </html>

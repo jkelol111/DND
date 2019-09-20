@@ -20,28 +20,14 @@
   },
   "type": "certified",
   "permissions": {
-    "audio-channel-publicnotification": {
-      "description": "Required to start/stop 'Do not disturb' mode."
-    },
-    "audio-channel-ringer": {
-      "description": "Required to start/stop 'Do not disturb' mode."
-    },
-    "audio-channel-notification": {
-      "description": "Required to start/stop 'Do not disturb' mode."
-    },
-    "audio-channel-alarm": {
-      "description": "Required to start/stop 'Do not disturb' mode."
-    },
-    "audio-channel-content": {
-      "description": "Required to start/stop 'Do not disturb' mode."
-    },
-    "audio-channel-normal": {
+    "settings": {
+      "access": "readwrite",
       "description": "Required to start/stop 'Do not disturb' mode."
     },
     "attention": {
       "description": "Required to start/stop 'Do not disturb' mode."
     },
-    "alarm": {
+    "alarms": {
       "description": "Required to automatically start/stop 'Do not disturb' mode."
     }
   },

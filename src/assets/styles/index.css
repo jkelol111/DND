@@ -1,5 +1,6 @@
 :root {
   --pane-transition-speed: 0.6s;
+  --toast-transition-speed: 0.7s;
 }
 
 .dnd_logo_center {
@@ -12,18 +13,6 @@
   text-align: center;
   padding-left: 3px;
   padding-right: 3px;
-}
-
-.transition_blur_in {
-  opacity: 0.3;
-  transition-property: opacity;
-  transition-duration: var(--pane-transition-speed);
-}
-
-.transition_blur_out {
-  opacity: 1;
-  transition-property: opacity;
-  transition-duration: var(--pane-transition-speed);
 }
 
 .transition_settings_show {
@@ -70,12 +59,10 @@
 .settings_entry_select {
   -moz-appearance: none;
   background: none;
-  padding-left: 0px;
   width: calc(100% - 20px);
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
-  padding: 0;
   border: 0;
   color: #ffffff;
   text-align: left;
@@ -83,5 +70,4 @@
   font-weight: 500;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
 }
