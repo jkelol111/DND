@@ -1,0 +1,44 @@
+.settings_separator {
+  height: 28px;
+  width: 100%;
+  background-color: #6a6a6a;
+  color: #ffffff;
+  line-height: 28px;
+  padding-left: 10px;
+}
+
+.settings_entry {
+  width: 100%;
+  height: 60px;
+  outline: 0;
+}
+
+.settings_entry:focus {
+  background-color: var(--theme-color);
+}
+
+.settings_entry_label {
+  width: calc(100% - 20px);
+  padding-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.settings_entry_select {
+  -moz-appearance: none;
+  background: none;
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  color: #ffffff;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -31,14 +31,11 @@ class DndScheduleManager {
       alarms.onsuccess = (e) => {
         e.result.forEach((alarm) => {
           navigator.mozAlarms.remove(alarm.id);
-        })
+        });
       }
       alarms.onerror = (err) => {
         throw err;
       }
-      localStorage.removeItem("dnd.schedule.daily.begin");
-      localStorage.removeItem("dnd.schedule.days");
-      localStorage.removeItem("dnd.schedule.daily.end");
       this.changesSavedCb();
     } catch(err) {
       this.changesUnsavedCb(err);
@@ -81,17 +78,6 @@ class DndScheduleManager {
 
 const scheduler = new DndScheduleManager();
 
-function getDaysSelected() {
-  var selectedValue = [];
-  var selectedString = "";
-  for(var i of document.getElementById("select_2").selectedOptions) {
-    selectedValue.push(i.value);
-    selectedString += i.label+" ";
-  }
-  return {values: selectedValue,
-          string: selectedString};
-}
-
 document.getElementById("select_0").onchange = (e) => {
   localStorage.setItem("dnd.mode", e.target.value);
   scheduler.changesSavedCb();
@@ -121,21 +107,36 @@ document.getElementById("select_1").onchange = (e) => {
   }
 }
 
-document.getElementById("select_2").onchange = (e) => {
+function getDaysSelected() {
+  var selectedValue = [];
+  var selectedString = "";
+  for(var i of document.getElementById("select_2").selectedOptions) {
+    selectedValue.push(i.value);
+    selectedString += i.label+" ";
+  }
+  return {values: selectedValue,
+          string: selectedString};
+}
+
+function select_2_label_update() {
   var selectedObject = getDaysSelected();
-  var selected = JSON.stringify(selectedObject["values"]);
-  if(selected === JSON.stringify(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])) {
+  var selectedValues = JSON.stringify(selectedObject["values"]);
+  if(selectedValues === JSON.stringify(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])) {
     document.getElementById("select_2_label").setAttribute("data-l10n-id", "settings_dnd_time_days_weekdays");
-  } else if (selected === JSON.stringify(["Saturday", "Sunday"])) {
+  } else if (selectedValues === JSON.stringify(["Saturday", "Sunday"])) {
     document.getElementById("select_2_label").setAttribute("data-l10n-id", "settings_dnd_time_days_weekends");
-  } else if(selected === JSON.stringify(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])) {
+  } else if(selectedValues === JSON.stringify(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])) {
     document.getElementById("select_2_label").setAttribute("data-l10n-id", "settings_dnd_time_days_everyday");
-  } else if(selected === JSON.stringify([])) {
+  } else if(selectedValues === JSON.stringify([])) {
     document.getElementById("select_2_label").setAttribute("data-l10n-id", "settings_dnd_time_days_none");
   } else {
     document.getElementById("select_2_label").textContent = selectedObject["string"];
   }
-  localStorage.setItem("dnd.schedule.days", selected);
+  return selectedValues;
+}
+
+document.getElementById("select_2").onchange = (e) => {
+  localStorage.setItem("dnd.schedule.days", select_2_label_update());
   scheduler.changesSavedCb();
 }
 
@@ -151,28 +152,6 @@ document.getElementById("select_4").onchange = (e) => {
   localStorage.setItem("dnd.schedule.daily.end", JSON.stringify({hour: timeOff[0],
                                                                  minute: timeOff[1]}));
   scheduler.changesSavedCb();
-}
-
-if(localStorage.getItem("dnd.mode") != null) {
-  document.getElementById("select_0").value = localStorage.getItem("dnd.mode");
-}
-const storedDays = localStorage.getItem("dnd.schedule.days");
-if(storedDays != null) {
-  document.getElementById("select_2").value = JSON.parse(storedDays);
-} else {
-  localStorage.setItem("dnd.schedule.enabled", "false");
-}
-document.getElementById("select_1").value = localStorage.getItem("dnd.schedule.enabled");
-var storedBeginTime = localStorage.getItem("dnd.schedule.daily.begin");
-if(storedBeginTime != null) {
-  console.log(storedBeginTime);
-  storedBeginTime = JSON.parse(storedBeginTime);
-  document.getElementById("select_3").value = storedBeginTime["hour"]+":"+storedBeginTime["minute"];
-}
-var storedEndTime = localStorage.getItem("dnd.schedule.daily.end");
-if(storedEndTime != null) {
-  storedEndTime = JSON.parse(storedEndTime);
-  document.getElementById("select_4").value = storedEndTime["hour"]+":"+storedEndTime["minute"];
 }
 
 class AppNavigation {
@@ -274,6 +253,33 @@ class AppNavigation {
 const nav = new AppNavigation();
 
 window.addEventListener('DOMContentLoaded', () => {
+  if(localStorage.getItem("dnd.mode") != null) {
+    document.getElementById("select_0").value = localStorage.getItem("dnd.mode");
+  }
+  var storedDays = localStorage.getItem("dnd.schedule.days");
+  if(storedDays != null) {
+    storedDays = JSON.parse(storedDays);
+    for(var value of document.getElementById("select_2").options) {
+      if(storedDays.indexOf(value.value) != -1) {
+        value.selected = true;
+      }
+    }
+    console.log(select_2_label_update());
+    console.log(getDaysSelected());
+  } else {
+    localStorage.setItem("dnd.schedule.enabled", "false");
+  }
+  document.getElementById("select_1").value = localStorage.getItem("dnd.schedule.enabled");
+  var storedBeginTime = localStorage.getItem("dnd.schedule.daily.begin");
+  if(storedBeginTime != null) {
+    storedBeginTime = JSON.parse(storedBeginTime);
+    document.getElementById("select_3").value = storedBeginTime["hour"]+":"+storedBeginTime["minute"];
+  }
+  var storedEndTime = localStorage.getItem("dnd.schedule.daily.end");
+  if(storedEndTime != null) {
+    storedEndTime = JSON.parse(storedEndTime);
+    document.getElementById("select_4").value = storedEndTime["hour"]+":"+storedEndTime["minute"];
+  }
   window.addEventListener("keydown", (e) => {
     switch(e.key) {
       case "SoftLeft":

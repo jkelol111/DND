@@ -4,25 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content_light="width=device-width,user-scalable=no">
     <title>Volumes</title>
-    <link rel="stylesheet" href="/assets/styles/app.css">
+    <link rel="stylesheet" href="/assets/styles/shared/app.css">
+    <link rel="stylesheet" href="/assets/styles/shared/settings.css">
+    <link rel="stylesheet" href="assets/styles/shared/native-toast.css">
     <link rel="stylesheet" href="/assets/styles/volumes.css">
     <link rel="manifest" href="/manifest.webapp">
     <link rel="localization" href="/assets/locales/{locale}/volumes.properties">
-    <script src="/assets/scripts/l10n.js" charset="utf-8"></script>
+    <script src="/assets/scripts/lib/l10n.js" charset="utf-8"></script>
   </head>
   <body>
     <header class="header_bar">
       <h1 class="header_title" data-l10n-id="header_title_default">header_title</h1>
     </header>
-    <section class="content">
-      <!-- volume elements here... -->
+    <section class="content" id="settings_container">
+      <div class="settings_separator" data-l10n-id="volume_category_alerts">volume_category_alerts</div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="volume_notifications">volume_notifications</h2>
+        <input type="range" min="0" max="15">
+      </div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="volume_alarm">volume_alarm</h2>
+      </div>
+      <div class="settings_separator" data-l10n-id="volume_category_playback">volume_category_playback</div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="volume_media">volume_media</h2>
+      </div>
+      <div class="settings_entry navigable">
+        <h2 class="settings_entry_label" data-l10n-id="volume_media_bluetooth">volume_media_bluetooth</h2>
+      </div>
     </section>
-    <!-- Namisdud3 -->
     <footer class="softkeys_bar">
       <label class="softkey_left"></label>
       <label class="softkey_center"></label>
       <label class="softkey_right" data-l10n-id="softkey_back">sk_right</label>
     </footer>
+    <script src="assets/scripts/lib/native-toast.js" defer></script>
+    <script src="assets/scripts/lib/naviboard.js" defer></script>
     <script src="/assets/scripts/volumes.js" defer></script>
   </body>
 </html>

@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
       activityHandler = activityRequest;
     }
   });
+  naviBoard.setNavigation("settings_container");
   window.addEventListener('keydown', (e) => {
     switch(e.key) {
       case 'Backspace':
